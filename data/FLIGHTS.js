@@ -1,0 +1,38 @@
+export default [
+  {
+    id: 1,
+    title: 'Dubai',
+    image: require('../data/images/dubai.jpg'),
+    price: '$ 83',
+    duration: '6 hours',
+    rating: 4.5,
+    description: 'Direct Flight.',
+  },
+  {
+    id: 2,
+    title: 'Bangkok',
+    image: require('../data/images/bangkok.jpg'),
+    price: '$ 982',
+    duration: '12 hours',
+    rating: 4.8,
+    description: 'stopover in Dubai.',
+  },
+  {
+    id: 3,
+    title: 'Tokyo',
+    image: require('../data/images/tokyo.jpg'),
+    price: '$ 214',
+    duration: '8 hours',
+    rating: 3.5,
+    description: 'Direct Flight.',
+  },
+  {
+    id: 4,
+    title: 'Madeira Island',
+    image: require('../data/images/madeira_island.jpg'),
+    price: '$ 98',
+    duration: '3 hours',
+    rating: 3.5,
+    description: 'stopover in Paris.',
+  },
+];
