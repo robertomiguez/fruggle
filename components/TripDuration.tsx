@@ -7,8 +7,8 @@ import {
   useColorScheme,
 } from 'react-native';
 
-import { Colors } from '../constants/Colors';
-import DURATIONS from '../data/DURATIONS';
+import { Colors } from '@/constants/Colors';
+import DURATIONS from '@/data/DURATIONS';
 
 type TripDurationProps = {
   activeDuration: number;

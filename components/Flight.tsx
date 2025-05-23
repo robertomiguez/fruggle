@@ -1,15 +1,19 @@
+import FlightDetailScreen from '@/app/modals/FlightDetailScreen';
+import { Colors } from '@/constants/Colors';
+import DURATIONS from '@/data/DURATIONS';
+import type Flight from '@/types/flight';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import React, { useState } from 'react';
 import {
   Dimensions,
   Image,
+  Modal,
   ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
-import { Colors } from '../constants/Colors';
-import DURATIONS from '../data/DURATIONS';
 
 type FlightProps = {
   activeDuration: number;
@@ -17,7 +21,19 @@ type FlightProps = {
 
 const WIDTH = Dimensions.get('screen').width;
 
-const Flight = ({ activeDuration }: FlightProps) => {
+const FlightScreen = ({ activeDuration }: FlightProps) => {
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedFlight, setSelectedFlight] = useState<Flight>();
+
+  const handleFlightPress = (flight: Flight) => {
+    setSelectedFlight(flight);
+    setModalVisible(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalVisible(false);
+  };
+
   return (
     <>
       {/* <Text style={styles.countText}>
@@ -33,9 +49,19 @@ const Flight = ({ activeDuration }: FlightProps) => {
         style={styles.scrollView}
       >
         {DURATIONS[activeDuration].flights.map((flight, index) => (
-          <TouchableOpacity style={styles.card} key={`tour-${index}`}>
+          <TouchableOpacity
+            style={styles.card}
+            key={`flight-${index}`}
+            onPress={() => handleFlightPress(flight)}
+          >
             <View style={styles.overlay}>
-              <TouchableOpacity style={styles.heartbutton}>
+              <TouchableOpacity
+                style={styles.heartbutton}
+                onPress={(e) => {
+                  // Stop propagation to prevent modal from opening
+                  e.stopPropagation();
+                }}
+              >
                 <Ionicons
                   name="heart-outline"
                   color={Colors.primary}
@@ -48,10 +74,26 @@ const Flight = ({ activeDuration }: FlightProps) => {
           </TouchableOpacity>
         ))}
       </ScrollView>
+
+      <Modal
+        animationType="slide"
+        transparent={false}
+        visible={modalVisible}
+        onRequestClose={handleCloseModal}
+      >
+        {selectedFlight && (
+          <FlightDetailScreen
+            flight={selectedFlight}
+            onClose={handleCloseModal}
+          />
+        )}
+      </Modal>
     </>
   );
 };
-export default Flight;
+
+export default FlightScreen;
+
 const styles = StyleSheet.create({
   countText: {
     fontSize: 17,

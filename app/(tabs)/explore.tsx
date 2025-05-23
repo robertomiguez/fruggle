@@ -1,36 +1,31 @@
+import { Colors } from '@/constants/Colors';
 import {
   SafeAreaView,
   StyleSheet,
   Text,
-  useColorScheme,
   View,
+  useColorScheme,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Colors } from '../../constants/Colors';
 
-export default function FlightDEtailScreen() {
+const Explore = () => {
   const insets = useSafeAreaInsets();
   const colorScheme = useColorScheme();
-  const theme = Colors[colorScheme || 'light'];
+  const theme = Colors[(colorScheme as 'light' | 'dark') || 'light'];
+
   return (
     <SafeAreaView>
       <View style={[styles.container, { paddingTop: insets.top + 10 }]}>
-        <View style={styles.header}>
-          <Text style={[styles.title, { color: theme.text }]}>Flight</Text>
-        </View>
+        <Text style={[styles.title, { color: theme.text }]}>Explore</Text>
       </View>
     </SafeAreaView>
   );
-}
+};
+export default Explore;
 
 const styles = StyleSheet.create({
   container: {
     padding: 20,
-  },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
   },
   title: {
     fontSize: 28,
