@@ -1,8 +1,8 @@
+import { Colors } from '@/constants/Colors';
 import { Asset } from 'expo-asset';
 import { Image, StyleSheet, Text, View, useColorScheme } from 'react-native';
-import { Colors } from '../constants/Colors';
 
-const avatarAsset = Asset.fromModule(require('../data/images/avatar.png'));
+const avatarAsset = Asset.fromModule(require('@/data/images/avatar.png'));
 
 const HomeHeader = () => {
   const colorScheme = useColorScheme();
